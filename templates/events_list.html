@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id = "title">Current Month: {{current_month}}</div>
+<a href="/create" class="nav">+ New Event</a>
+
+<div class="month">
+    <div>
+        {% for calendar_day in calendar_days%}
+            <div id = "monthDaysDiv">
+                {{calendar_day}}
+            </div>
+        {% endfor %}
+    </div>
+
+{% for day in days%}
+    {% if day != 0 %}
+    <div class="dayInfoDiv">  
+            {{day}}
+            <a href="/create/{{day}}" class="nav">+ New Event</a>
+                
+    {% if day%7==0 %}
+        <div></div>
+    {%endif%}
+    {% for event in events %}
+
+        {%if day|int() == event.day_chosen %}
+       
+            <a href="/event/{{ event._id }}"><img src="{{ event.photo_url }}" id="imageDiv"></a>
+            <a href="/event/{{ event._id }}">{{ event.event_name }}</a>
+ 
+        {%endif%}
+  
+    {%endfor%}   
+</div>
+    {% endif %}
+    
+{%endfor%}
+
+       
+{% endblock content %}

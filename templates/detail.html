@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+        <h1>Event: {{ event.event_name }}</h1>
+        <div id="editEventDiv">
+        <img class="detail" src={{ event.photo_url }}>
+        <section id="info">
+            <h3>Info</h3>
+
+            <strong>Date Your Profile was Created</strong>
+            {{ event.date_created }}
+            <br><br>
+
+            <strong>Time</strong>
+           
+            <br><br>
+
+            <a class="nav" href="/edit/{{ event._id }}">Edit event</a><br><br>
+        </section>
+
+        <form action="/profile/{{ event._id }}" method="POST">
+            <fieldset>
+                <legend>Profiles:</legend>
+
+                <label>
+                    Time of Arrival:
+                    <input type="text" name="time" placeholder="e.g. 2pm">
+                </label>
+
+                <label>
+                    Name:
+                    <input type="text" name="profile_name">
+                </label>
+
+                <label>
+                    Date of Profile Sign Up
+                    <input type="date" name="date_created">
+                </label>
+                <label>
+                    How many people are in your party?
+                    <input type="text" name="number_attending">
+                </label>
+
+                <input type="submit" class="submit" value="Create profile!">
+            </fieldset>
+        </form>
+
+        <section id="profile-history">
+            <h3>Your profiles for this event:</h3>
+            <ul>
+              {% for profile in profiles %}
+                {{profile.profile_name}}
+                    <li>Date Profile was Added: {{profile.date_created}}</li>
+                    <li>Number Attending in Your Party: {{profile.number_attending}}</li>
+                    <li>Time of Arrival: {{profile.time}}</li>
+                   
+              {% endfor %}
+            </ul>
+        </section>
+
+        <form action="/delete/{{ event._id }}" method='POST' id="delete-form" onsubmit="return confirm_delete()">
+            <input type="submit" class="nav" onclick="delete_modal()" value="Delete event">
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

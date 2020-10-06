@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+    <div id="newEventDiv">
+    <h1>Edit Event</h1>
+
+    <form method='POST'>
+        <fieldset>
+            <legend>Fill Out Info For Your Event:</legend>
+
+            <label>
+                Event Name:
+                <input type="text" name="plant_name" value="{{event.name}}">
+            </label>
+
+            <label>
+                Event photo URL:
+                <input type="url" name="photo" value="{{event.photo_url}}">
+            </label>
+
+            <label>
+                Date created:
+                <input type="date" name="date_created" value="{{event.date_created}}">
+            </label>
+
+            <input type="submit" class="submit" value="Submit!">
+        </fieldset>
+    </form>
+    </div>
+</main>
+
+{% endblock content %}
