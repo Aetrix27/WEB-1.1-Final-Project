@@ -2,53 +2,31 @@
 ul {list-style-type: none;}
 body {font-family: Verdana, sans-serif;}
 
-.month {
+#month {
   padding: 70px 25px;
   width: 100%;
   background: lightblue;
+  display:flex;
+  height:200px;
+ 
+}
+
+.flex-container {
+  display: flex;
+  background-color: lightcoral;
+}
+.flex-container > div {
+  padding: 70px;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  width:100px;
+}
+
+#monthText{
+  font:arial;
+  font-size: larger;
   text-align: center;
-}
-
-.month ul {
-  margin: 0;
-  padding: 0;
-}
-
-.month ul li {
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.month .prev {
-  float: left;
-  padding-top: 10px;
-}
-
-.month .next {
-  float: right;
-  padding-top: 10px;
-}
-
-.weekdays {
-  margin: 0;
-  padding: 10px 0;
-  background-color: #ddd;
-}
-
-.weekdays li {
-  display: inline-block;
-  width: 13.6%;
-  color: #666;
-  text-align: center;
-}
-
-.days {
-  padding: 10px 0;
-  background: #eee;
-  margin: 0;
-  border:2px;
 }
 
 #cardcontenta {
@@ -64,17 +42,15 @@ body {font-family: Verdana, sans-serif;}
 }
 
 #imageDiv{
-  width:50%;
-  height:130%;
+  width:400;
+  height:250;
 
 }
 #title{
   text-align: center;
   font: helvetica;
-
-
 }
-.dayInfoDiv{
+#dayInfoDiv{
   padding: 20px;
   background:lightgreen;
   border:1px, black;
@@ -95,16 +71,16 @@ body {font-family: Verdana, sans-serif;}
 }
 
 #editEventDiv{
-  padding: 70px 25px;
+  padding: 70px;
   width: 100%;
   background:lightgreen;
-  text-align: center;
+  vertical-align: top;
 
 }
 
 #monthDaysDiv{
   margin-right:25px;
-  padding:20px;
+  padding:70px;
   display:inline-block;
   width: 80px;
   height: 40px;

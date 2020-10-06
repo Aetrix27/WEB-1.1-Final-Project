@@ -21,21 +21,15 @@ app.jinja_env.add_extension('jinja2.ext.do')
 # ROUTES
 ############################################################
 
-rows=7
-columns=5
-
 @app.route('/')
 def events_list():
     """Display the events list page."""
     today = datetime.today()
-    current_month = datetime(today.year, today.month, 1)
+    current_month = today.strftime('%B')
     c=calendar.TextCalendar(calendar.SUNDAY)
     days=c.itermonthdays(2025,4)
     calendar_days=calendar.day_name
     events_data=mongo.db.events.find({})
-    counter=0
-
-    Matrix = [[row for row in range(rows)] for column in range(columns)] 
 
     context = {
         'events': events_data,
@@ -43,9 +37,6 @@ def events_list():
         'calendar_days' : calendar_days,
         'current_month' : current_month,
         'days' : days,
-        'Matrix' : Matrix,
-        'rows' : rows,
-        'columns' : columns
     }
 
     return render_template('events_list.html', **context)
@@ -80,9 +71,9 @@ def create(in_day):
         return redirect(url_for('detail', event_id=inserted_id))
     else:
         if int(in_day)<10:
-            date=datetime.today().strftime(f'%m-0%{in_day}-%Y')
+            date=datetime.today().strftime(f'%Y-%m-0%{in_day}')
         elif int(in_day)>=10:
-            date=datetime.today().strftime(f'%m-%{in_day}-%Y')
+            date=datetime.today().strftime(f'%Y-%m-%{in_day}')
         context={
             'day_in' : date
 
