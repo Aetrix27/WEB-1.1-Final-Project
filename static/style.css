@@ -10,6 +10,18 @@ body {font-family: Verdana, sans-serif;}
   height:200px;
  
 }
+#zeros{
+  padding: 20px;
+  background:lightgreen;
+  border:1px, black;
+  width: 150px;
+  height: 250px;
+  margin-right:25px;
+  margin-top:20px;
+  align-self:left;
+  display:inline-block;
+
+}
 
 .flex-container {
   display: flex;
