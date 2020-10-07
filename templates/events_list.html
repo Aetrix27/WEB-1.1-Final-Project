@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div id = "monthText">Current Month: {{current_month}}</div>
-
+<div id = "monthText">{{current_month}}</div>
 <div id="month">
+ 
     <div>
         {% for calendar_day in calendar_days%}
             <div id = "monthDaysDiv">

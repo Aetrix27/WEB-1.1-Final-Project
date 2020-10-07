@@ -8,8 +8,10 @@ body {font-family: Verdana, sans-serif;}
   background: lightblue;
   display:flex;
   height:200px;
+  text-align:center;
  
 }
+
 #zeros{
   padding: 20px;
   background:lightgreen;
@@ -39,6 +41,7 @@ body {font-family: Verdana, sans-serif;}
   font:arial;
   font-size: larger;
   text-align: center;
+
 }
 
 #cardcontenta {
@@ -71,19 +74,20 @@ body {font-family: Verdana, sans-serif;}
   margin-right:25px;
   margin-top:20px;
   display:inline-block;
-  align-self:left;
+  vertical-align: top;
+  position:relative;
 
 }
 
 #newEventDiv{
-  padding: 70px 25px;
+  padding: 40px 25px;
   width: 100%;
-  background: rgb(212, 35, 222);
+  background: rgb(243, 59, 252);
   text-align: center;
 }
 
 #editEventDiv{
-  padding: 70px;
+  padding: 40px;
   width: 100%;
   background:lightgreen;
   vertical-align: top;

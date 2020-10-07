@@ -27,8 +27,9 @@ def events_list():
     today = datetime.today()
     current_month = today.strftime('%B')
     c=calendar.TextCalendar(calendar.SUNDAY)
-    days=c.itermonthdays(2025,4)
+    days=c.itermonthdays(2025,today.month)
     calendar_days=calendar.day_name
+    
     events_data=mongo.db.events.find({})
 
     context = {
