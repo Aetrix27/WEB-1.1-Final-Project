@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
 import calendar
+import os
 from jinja2.ext import do
 
 #Written with help from https://www.guru99.com/calendar-in-python.html
@@ -13,7 +14,8 @@ from jinja2.ext import do
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/eventsDatabase"
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/carshowevents') + "?retryWrites=false"
+app.config["MONGO_URI"] = host
 mongo = PyMongo(app)
 app.jinja_env.add_extension('jinja2.ext.do')
 
