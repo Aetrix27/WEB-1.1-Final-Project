@@ -55,6 +55,8 @@ def create(in_day):
     """Display the event creation page & process data from the event form."""
     event = request.form.get('event_name')
     photo_url = request.form.get('photo_url')
+    location = request.form.get('location')
+    description = request.form.get('description')
 
     if request.method == 'POST':
         date_created = request.form.get('date_created')
@@ -66,6 +68,8 @@ def create(in_day):
             'photo_url': photo_url,
             'day_chosen' : int(date_in_days),
             'date_created' : date_created,
+            'location' : location,
+            'description' : description
         }
  
         result=mongo.db.events.insert_one(new_event)
@@ -135,6 +139,8 @@ def edit(event_id):
         event = request.form.get('event_name')
         photo_url = request.form.get('photo_url')
         date_created = request.form.get('date_created')
+        location = request.form.get('location')
+        description = request.form.get('description')
 
         mongo.db.events.update_one({
             '_id': ObjectId(event_id)
@@ -144,7 +150,9 @@ def edit(event_id):
                 '_id': ObjectId(event_id),
                 'event_name' : event,
                 'date_created' : date_created,
-                'photo_url' : photo_url
+                'photo_url' : photo_url,
+                'location' : location,
+                'description' : description
             }
         })
         

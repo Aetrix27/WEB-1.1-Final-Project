@@ -11,6 +11,14 @@
             <strong>Date Event Was Created:</strong>
             {{ event.date_created }}
             <br><br>
+
+            <strong>Location:</strong>
+            {{ event.location }}
+            <br><br>
+
+            <strong>Description:</strong>
+            {{ event.description }}
+            <br><br>
             
             <a class="nav" href="/edit/{{ event._id }}">Edit event</a><br><br>
         </section>
@@ -23,6 +31,7 @@
                     Time of Arrival:
                     <input type="text" name="time" placeholder="e.g. 2pm">
                 </label>
+
 
                 <label>
                     Name:
