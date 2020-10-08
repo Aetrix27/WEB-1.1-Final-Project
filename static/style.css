@@ -14,7 +14,7 @@ body {font-family: Verdana, sans-serif;}
 
 #zeros{
   padding: 20px;
-  background:lightgreen;
+  background:rgb(255, 93, 130);
   border:1px, black;
   width: 150px;
   height: 250px;
@@ -60,7 +60,7 @@ body {font-family: Verdana, sans-serif;}
 }
 
 #daysWrapper{
-  background:rgb(59, 159, 252);
+  background:rgb(118, 189, 255);
   width: 90%;
   margin: auto;
 
@@ -68,7 +68,7 @@ body {font-family: Verdana, sans-serif;}
 
 #dayInfoDiv{
   padding: 20px;
-  background:lightgreen;
+  background:rgb(216, 58, 58);
   border: 1px, black;
   width: 150px;
   height: 250px;

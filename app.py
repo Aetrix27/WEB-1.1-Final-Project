@@ -13,6 +13,7 @@ import os
 ############################################################
 
 app = Flask(__name__)
+
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/carshowevents') + "?retryWrites=false"
 app.config["MONGO_URI"] = host
 mongo = PyMongo(app)
