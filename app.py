@@ -26,18 +26,18 @@ def events_list():
     """Display the events list page."""
     today = datetime.today()
     current_month = today.strftime('%B')
-    c=calendar.TextCalendar(calendar.SUNDAY)
-    days=c.itermonthdays(2025,today.month)
-    calendar_days=calendar.day_name
-    
-    events_data=mongo.db.events.find({})
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    days = c.itermonthdays(2025,today.month)
+    calendar_days = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat']
+    events_data = mongo.db.events.find({})
 
     context = {
         'events': events_data,
         'c': c,
         'calendar_days' : calendar_days,
         'current_month' : current_month,
-        'days' : days,
+        'days' : days
+  
     }
 
     return render_template('events_list.html', **context)
@@ -45,23 +45,23 @@ def events_list():
 @app.route('/profile')
 def about():
     """Display the profile page."""
+
     return render_template('detail.html')
 
 @app.route('/create/<in_day>', methods=['GET', 'POST'])
 def create(in_day):
     """Display the event creation page & process data from the event form."""
-    event=request.form.get('event_name')
-    photo=request.form.get('photo')
+    event = request.form.get('event_name')
+    photo_url = request.form.get('photo_url')
 
     if request.method == 'POST':
-        date_created=request.form.get('date_created')
+        date_created = request.form.get('date_created')
         date_obj = datetime.strptime(date_created, '%Y-%m-%d')
         date_in_days = date_obj.strftime('%-d')
-        print(date_in_days)
         
         new_event = {
             'event_name': event,
-            'photo_url': photo,
+            'photo_url': photo_url,
             'day_chosen' : int(date_in_days),
             'date_created' : date_created,
         }
@@ -71,15 +71,15 @@ def create(in_day):
 
         return redirect(url_for('detail', event_id=inserted_id))
     else:
-        if int(in_day)<10:
+        if int(in_day) < 10:
             date=datetime.today().strftime(f'%Y-%m-0%{in_day}')
-        elif int(in_day)>=10:
+        elif int(in_day) >= 10:
             date=datetime.today().strftime(f'%Y-%m-%{in_day}')
-        context={
+
+        context = {
             'day_in' : date
 
         }
-        print(date)
 
         return render_template('create.html',**context)
 
@@ -110,13 +110,15 @@ def profile(event_id):
    
     date_created = request.form.get("date_created")
     profile_name=request.form.get("profile_name")
-    input_string=request.form.get("number_attending")
+    number_attending=request.form.get("number_attending")
+    time=request.form.get("time")
 
     new_profile = {
-        'number_attending': input_string,
+        'number_attending': number_attending,
         'date_created': date_created,
         'event_id': ObjectId(event_id),
         'profile_name' : profile_name,
+        'time' : time
     
     }
 
@@ -129,7 +131,7 @@ def edit(event_id):
     """Shows the edit page and accepts a POST request with edited data."""
     if request.method == 'POST':
         event = request.form.get('event_name')
-        photo = request.form.get('photo')
+        photo_url = request.form.get('photo_url')
         date_created = request.form.get('date_created')
 
         mongo.db.events.update_one({
@@ -140,7 +142,7 @@ def edit(event_id):
                 '_id': ObjectId(event_id),
                 'event_name' : event,
                 'date_created' : date_created,
-                'photo_url' : photo
+                'photo_url' : photo_url
             }
         })
         

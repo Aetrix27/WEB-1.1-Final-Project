@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="month">
+<div id = "daysWrapper">
 {% for day in days%}
     {% if day == 0 %}
     <div id = "zeros">  
@@ -29,7 +29,6 @@
    
         {% for event in range(events.count()) %}
             {%if day|int()==events[event].day_chosen %}
-        
                 <a href="/event/{{ events[event]._id }}"><img src="{{ events[event].photo_url }}" id="imageDiv"></a>
                 <a href="/event/{{ events[event]._id }}">{{ events[event].event_name }}</a>
     
