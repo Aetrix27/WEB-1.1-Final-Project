@@ -5,8 +5,6 @@ from datetime import datetime
 import calendar
 import os
 
-import logging
-
 
 #Written with help from https://www.guru99.com/calendar-in-python.html
 
@@ -15,12 +13,9 @@ import logging
 ############################################################
 
 app = Flask(__name__)
-
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/carshowevents') + "?retryWrites=false"
 app.config["MONGO_URI"] = host
 mongo = PyMongo(app)
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
 
 
 ############################################################
