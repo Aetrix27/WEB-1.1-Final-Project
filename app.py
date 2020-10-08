@@ -5,7 +5,6 @@ from datetime import datetime
 import calendar
 import os
 
-
 #Written with help from https://www.guru99.com/calendar-in-python.html
 
 ############################################################
