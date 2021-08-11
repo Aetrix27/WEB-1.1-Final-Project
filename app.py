@@ -4,7 +4,9 @@ from bson.objectid import ObjectId
 from datetime import datetime
 import calendar
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Written with help from https://www.guru99.com/calendar-in-python.html
 
 ############################################################
@@ -13,8 +15,9 @@ import os
 
 app = Flask(__name__)
 
-host = os.environ.get(
-    'MONGODB_URI', 'mongodb+srv://david-323:david123@cluster0.dqhub.mongodb.net/CarshowEvents') + "?retryWrites=false"
+secret = os.getenv('MONGO_PASS')
+
+host = os.environ.get('MONGODB_URI', secret) + "?retryWrites=false"
 app.config["MONGO_URI"] = host
 mongo = PyMongo(app)
 
