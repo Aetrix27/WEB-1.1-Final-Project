@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 secret = os.getenv('MONGO_PASS')
 
-host = os.environ.get('MONGODB_URI', secret) + "?retryWrites=false"
+host = "mongodb+srv://david-323:"+ secret +"@cluster0.dqhub.mongodb.net/?retryWrites=true&w=majority"
 app.config["MONGO_URI"] = host
 mongo = PyMongo(app)
 
@@ -29,23 +29,42 @@ mongo = PyMongo(app)
 @app.route('/')
 def events_list():
     """Display the events list page."""
-    today = datetime.today()
-    current_month = today.strftime('%B')
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    days = c.itermonthdays(2025, today.month)
-    calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
-    events_data = mongo.db.events.find({})
+    try:
+        today = datetime.today()
+        current_month = today.strftime('%B')
+        c = calendar.TextCalendar(calendar.SUNDAY)
+        days = c.itermonthdays(2025, today.month)
+        calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
+        events_data = mongo.db.events.find({})
 
-    context = {
-        'events': events_data,
-        'c': c,
-        'calendar_days': calendar_days,
-        'current_month': current_month,
-        'days': days
+        context = {
+            'events': events_data,
+            'c': c,
+            'calendar_days': calendar_days,
+            'current_month': current_month,
+            'days': days,
+            'eventsPresent': True
 
-    }
+        }
 
-    return render_template('events_list.html', **context)
+        return render_template('events_list.html', **context)
+    except Exception as e:
+        today = datetime.today()
+        current_month = today.strftime('%B')
+        c = calendar.TextCalendar(calendar.SUNDAY)
+        days = c.itermonthdays(2025, today.month)
+        calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
+
+        context = {
+            'c': c,
+            'calendar_days': calendar_days,
+            'current_month': current_month,
+            'days': days,
+            'eventsPresent': False
+
+        }
+
+        return render_template('events_list.html', **context)
 
 
 @app.route('/profile')

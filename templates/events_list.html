@@ -26,7 +26,7 @@
         {% if day%7==0 %}
             <div></div>
         {%endif%}
-   
+        {% if eventsPresent == True %}
         {% for event in range(events.count()) %}
             {%if day|int()==events[event].day_chosen %}
                 <a href="/event/{{ events[event]._id }}"><img src="{{ events[event].photo_url }}" id="imageDiv"></a>
@@ -35,6 +35,8 @@
             {%endif%}
     
         {%endfor%}   
+        {% endif %}
+
         </div>
     {% endif %}
     
