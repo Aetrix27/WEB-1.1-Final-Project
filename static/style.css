@@ -14,7 +14,6 @@ body {font-family: Verdana, sans-serif;}
 
 #zeros{
   padding: 20px;
-  background:rgb(255, 93, 130);
   border:1px, black;
   width: 150px;
   height: 250px;
@@ -27,7 +26,7 @@ body {font-family: Verdana, sans-serif;}
 
 .flex-container {
   display: flex;
-  background-color: lightcoral;
+  background-color: rgb(187, 247, 255);
 }
 .flex-container > div {
   padding: 70px;
@@ -68,7 +67,7 @@ body {font-family: Verdana, sans-serif;}
 
 #dayInfoDiv{
   padding: 20px;
-  background:rgb(216, 58, 58);
+  background:rgb(175, 243, 255);
   border: 1px, black;
   width: 150px;
   height: 250px;
@@ -83,7 +82,7 @@ body {font-family: Verdana, sans-serif;}
 #newEventDiv{
   padding: 40px 25px;
   width: 100%;
-  background: rgb(248, 108, 255);
+  background: rgb(255, 255, 255);
   text-align: center;
 }
 

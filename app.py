@@ -101,10 +101,15 @@ def create(in_day):
 
         return redirect(url_for('detail', event_id=inserted_id))
     else:
+        print(in_day)
         if int(in_day) < 10:
-            date = datetime.today().strftime(f'%Y-%m-0%{in_day}')
+            date = datetime.now()
+            date=date.replace(day=int(in_day))
+            date.strftime(f'%Y-%m-%d')
         elif int(in_day) >= 10:
-            date = datetime.today().strftime(f'%Y-%m-%{in_day}')
+            date = datetime.now()
+            date=date.replace(day=int(in_day))
+            date.strftime(f'%Y-%m-%d')
 
         context = {
             'day_in': date
