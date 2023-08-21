@@ -6,35 +6,40 @@
     <h1>New Event</h1>
 
     <form method='POST'>
-        <fieldset>
-            <legend>Fill Out the Info for the Event:</legend>
+        <legend>Event Details:</legend>
+        <div>
             <label>
-               Name of Event:
+                Name of Event:
                 <input type="text" name="event_name">
             </label>
-
+        </div>
+        <div>
             <label>
                 Event's photo URL:
                 <input type="url" name="photo_url">
             </label>
-            * You must enter a date
+        </div>
+        * You must enter a date
+        <div>
             <label>
                 Date for Event:
                 <input type="date" name="date_created" value="{{day_in}}">
             </label>
+        </div>
+        <div>
             <label>
                 Location of Event:
                 <input type="text" name="location">
             </label>
-            <div>
-                <label>
-                    Description:
-                    <input type="text" name="description">
-                </label>
-            </div>
+        </div>
+        <div>
+            <label>
+                Description:
+                <input type="text" name="description">
+            </label>
+        </div>
 
-            <input type="submit" class="submit" value="Submit!">
-        </fieldset>
+        <input type="submit" class="submit" value="Submit!">
     </form>
 </div>
 </main>
