@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div id = "monthText">{{current_month}}</div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light container">
+<div class = "day-of-the-week">
 
     <div class="collapse navbar-collapse" id="month">
         <ul class="navbar-nav mr-auto">
@@ -14,18 +14,37 @@
         </li>
         </ul>
     </div>
-</nav>
+</div>
 {% set day = 0 -%}
 
 <section class="bg-light">
-    <div class="container">
+    <div class="date-grid">
 
     {% for day in days%}
         {% if day == 0 %}
             <div id = "zeros">  
             </div>
         {%endif%}
-        {% if day != 0%}
+        {% if day == 1 %}
+            <div class = "dayInfoDiv">  
+                {{day}}
+                <a href="/create/{{day}}" class="nav">+ New Event</a>
+                        
+        
+            {% if eventsPresent == True %}
+            {% for event in range(events.count()) %}
+                {%if day|int()==events[event].day_chosen %}
+                    <a href="/event/{{ events[event]._id }}"><img src="{{ events[event].photo_url }}" id="imageDiv"></a>
+                    <a href="/event/{{ events[event]._id }}">{{ events[event].event_name }}</a>
+        
+                {%endif%}
+        
+            {%endfor%}   
+            {% endif %}
+
+            </div>
+        {%endif%}
+        {% if day != 0 and day!=1 %}
             <div class = "dayInfoDiv">  
                 {{day}}
                 <a href="/create/{{day}}" class="nav">+ New Event</a>
@@ -49,7 +68,7 @@
 
     {%endfor%}
 
-</div>
+    </div>
 </section>
        
 {% endblock content %}

@@ -28,7 +28,7 @@ def create_app():
 
     #secret = os.getenv('MONGO_PASS')
     #secret = os.getenv('SECRET_KEY')
-    host = os.environ.get('MONGO_URI')
+    host = os.environ.get('MONGODB_HOST')
     app.config["MONGO_URI"] = host
 
     mongo = PyMongo(app)
@@ -48,6 +48,7 @@ def create_app():
             if events_data != {}:
                 events_data = mongo.db.events.find({})
                 print(mongo.events.find({}))
+            day_one=datetime.today().replace(day=1)
 
 
             context = {
@@ -56,7 +57,8 @@ def create_app():
                 'calendar_days': calendar_days,
                 'current_month': current_month,
                 'days': days,
-                'eventsPresent': True
+                'eventsPresent': True,
+                'day_one': day_one
 
             }
 
