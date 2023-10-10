@@ -1,17 +1,9 @@
 * {box-sizing: border-box;}
-ul {list-style-type: none;}
 body {font-family: Verdana, sans-serif;}
 
-#month {
-  padding: 20px;
 
-  width: 100%;
-  background: lightblue;
-  height:150px;
-  font-style:bold;
-  display:inline-block;
-
- 
+.nav-item{
+  padding-left:185px;
 }
 
 #zeros{
@@ -30,16 +22,17 @@ body {font-family: Verdana, sans-serif;}
   display: flex;
   background-color: rgb(187, 247, 255);
 }
-.flex-container > div {
-  padding: 70px;
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
-  width:100px;
-}
+
 .date-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  padding-left:130px;
+  padding-right:130px;
+  grid-gap: 20px; 
+}
+
+.date-grid div:first-child {
+  grid-column: 6;
 }
 #monthText{
   font:arial;
@@ -76,9 +69,10 @@ body {font-family: Verdana, sans-serif;}
   border: 1px, black;
   width: 150px;
   height: 250px;
-
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  padding-top:30px;
+
 
 }
 
@@ -104,4 +98,13 @@ body {font-family: Verdana, sans-serif;}
   height:150px;
   display:inline-block;
 
+}
+
+#calendarDay{
+  padding: 20px;
+  border: 1px, black;
+  width: 150px;
+  height: 250px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
