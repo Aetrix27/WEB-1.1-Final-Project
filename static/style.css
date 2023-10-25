@@ -31,9 +31,7 @@ body {font-family: Verdana, sans-serif;}
   grid-gap: 20px; 
 }
 
-.date-grid div:first-child {
-  grid-column: 6;
-}
+
 #monthText{
   font:arial;
   font-size: larger;

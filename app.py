@@ -39,48 +39,43 @@ def create_app():
     @app.route('/')
     def events_list():
         """Display the events list page."""
-        try:
-            today = datetime.today()
-            current_month = today.strftime('%B')
-            c = calendar.TextCalendar(calendar.SUNDAY)
-            days = c.itermonthdays(2025, today.month)
-            calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
-            if events_data != {}:
-                events_data = mongo.db.events.find({})
-                print(mongo.events.find({}))
-            day_one=datetime.today().replace(day=1)
+        today = datetime.today()
+        current_month = today.strftime('%B')
+
+        # Extract the current year and month
+        current_year = today.strftime("%Y")
+        c = calendar.TextCalendar(calendar.SUNDAY)
+        days = c.itermonthdays(2025, today.month)
+        calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
+        events_data = mongo.db.events.find({})
+        current_month_int = today.month
+        days_list = []
+        count=0
+        for i in events_data:
+            days_list.append([i["day_chosen"], i["_id"],i["photo_url"],i["event_name"]])
+            count+=1
+        print(days_list[0][0])
+        first_day_of_month = datetime(int(current_year), current_month_int, 1)
+
+        # Get the day of the week (0 = Monday, 1 = Tuesday, ..., 6 = Sunday)
+
+        #day_one = int(first_day_of_month.strptime("%d")+1)
+        day_one = int(first_day_of_month.weekday() + 1)
 
 
-            context = {
-                'events': events_data,
-                'c': c,
-                'calendar_days': calendar_days,
-                'current_month': current_month,
-                'days': days,
-                'eventsPresent': True,
-                'day_one': day_one
+        context = {
+            'events': days_list,
+            'c': c,
+            'calendar_days': calendar_days,
+            'current_month': current_month,
+            'days': days,
+            'eventsPresent': True,
+            'day_one': day_one
 
-            }
+        }
 
-            return render_template('events_list.html', **context)
-        except Exception as e:
-            today = datetime.today()
-            current_month = today.strftime('%B')
-            c = calendar.TextCalendar(calendar.SUNDAY)
-            days = c.itermonthdays(2025, today.month)
-            calendar_days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
-
-            context = {
-                'c': c,
-                'calendar_days': calendar_days,
-                'current_month': current_month,
-                'days': days,
-                'eventsPresent': False
-
-            }
-
-            return render_template('events_list.html', **context)
-
+        return render_template('events_list.html', **context)
+       
 
     @app.route('/profile')
     def about():

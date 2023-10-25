@@ -21,58 +21,39 @@
      
     </div>
   </nav>
-{% set day = 0 -%}
+{% set count = 0 -%}
+{% set blankDay = 0 -%}
 
 <section class="bg-light">
     <div class="date-grid">
+   
+        {% for blankDay in range(day_one) %}
 
-    {% for day in days%}
-        {% if day == 0 %}
-            <div id = "zeros">  
-            </div>
-        {%endif%}
-        {% if day == 1 %}
             <div class = "dayInfoDiv">  
-                {{day}}
-                <a href="/create/{{day}}" class="nav">+ New Event</a>
-                        
-        
-            {% if eventsPresent == True %}
-            {% for event in range(events.count()) %}
-                {%if day|int()==events[event].day_chosen %}
-                    <a href="/event/{{ events[event]._id }}"><img src="{{ events[event].photo_url }}" id="imageDiv"></a>
-                    <a href="/event/{{ events[event]._id }}">{{ events[event].event_name }}</a>
-        
-                {%endif%}
-        
-            {%endfor%}   
-            {% endif %}
+            </div>
 
-            </div>
-        {%endif%}
-        {% if day != 0 and day!=1 %}
-            <div class = "dayInfoDiv">  
-                {{day}}
-                <a href="/create/{{day}}" class="nav">+ New Event</a>
-                        
+        {% endfor %}
+  
+          {% for day in days%}
+      
          
             {% if eventsPresent == True %}
-            {% for event in range(events.count()) %}
-                {%if day|int()==events[event].day_chosen %}
-                    <a href="/event/{{ events[event]._id }}"><img src="{{ events[event].photo_url }}" id="imageDiv"></a>
-                    <a href="/event/{{ events[event]._id }}">{{ events[event].event_name }}</a>
-        
-                {%endif%}
-        
-            {%endfor%}   
+                {% for event in events %}
+                
+                  {%if day <= events | length %}
+                    {%if day|int()==events[count][0] %}
+                        <a href="/event/{{ events[count][1] }}"><img src="{{ events[count][2] }}" id="imageDiv"></a>
+                        <a href="/event/{{ events[count][1] }}">{{ events[count][3] }}</a>
+            
+                    {%endif%}
+                  {% endif %}
+            
+                {%endfor%}   
             {% endif %}
 
             </div>
-        {% endif %}
-      
-        {% set day = day + 1 -%}
-
-    {%endfor%}
+            {% set count = count+1 %}
+          {%endfor%}
 
     </div>
 </section>
