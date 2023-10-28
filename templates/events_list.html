@@ -34,26 +34,30 @@
 
         {% endfor %}
   
-          {% for day in days%}
-      
-         
-            {% if eventsPresent == True %}
-                {% for event in events %}
-                
-                  {%if day <= events | length %}
-                    {%if day|int()==events[count][0] %}
-                        <a href="/event/{{ events[count][1] }}"><img src="{{ events[count][2] }}" id="imageDiv"></a>
-                        <a href="/event/{{ events[count][1] }}">{{ events[count][3] }}</a>
-            
-                    {%endif%}
-                  {% endif %}
-            
-                {%endfor%}   
-            {% endif %}
+        {% for day in days%}
+        {% if day != 0%}
 
-            </div>
-            {% set count = count+1 %}
-          {%endfor%}
+          <div class = "dayInfoDiv">  
+            {{day}}
+            <a href="/create/{{day}}" class="nav">+ New Event</a>
+          
+          {% if eventsPresent == True %}
+              {% for event in events %}
+    
+                  {%if day|int()==events[count][0] %}
+                      <a href="/event/{{ events[count][1] }}"><img src="{{ events[count][2] }}" id="imageDiv"></a>
+                      <a href="/event/{{ events[count][1] }}">{{ events[count][3] }}</a>
+          
+                  {%endif%}
+            
+              {%endfor%}   
+
+                  </div>
+          {% endif %}
+          {% set count = count+1 %}
+          {% endif %}
+
+        {%endfor%}
 
     </div>
 </section>
